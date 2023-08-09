@@ -131,13 +131,13 @@ namespace CodeGenerator
             foreach (EnvDTE.SelectedItem selectedItem in selectedItems)
             {
                 projectItem = selectedItem.ProjectItem;
-                if (!IsIEntityImplementation(projectItem))
-                {
-                    message = "Object must be Implemented from IEntity in order to generate";
-                    VsShellUtilities.ShowMessageBox((IServiceProvider)ServiceProvider, message, title,
-                        OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
-                    return;
-                }
+                //if (!IsIEntityImplementation(projectItem))
+                //{
+                //    message = "Object must be Implemented from IEntity in order to generate";
+                //    VsShellUtilities.ShowMessageBox((IServiceProvider)ServiceProvider, message, title,
+                //        OLEMSGICON.OLEMSGICON_INFO, OLEMSGBUTTON.OLEMSGBUTTON_OK, OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST);
+                //    return;
+                //}
 
                 if (projectItem != null)
                 {
@@ -304,7 +304,8 @@ namespace CodeGenerator
 
                         foreach (CodeInterface iface in property.ImplementedInterfaces)
                         {
-                            if (iface.Name == "IEntity")
+                            Console.WriteLine(iface.Name);
+                            if (iface.Name == "IEntity" || iface.Name == "BaseEntity")
                             {
                                 return true;
                             }
